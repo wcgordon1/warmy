@@ -7,7 +7,7 @@ export async function GET(context: APIContext) {
   );
 
   const index = posts.map((post) => ({
-    slug: post.slug,
+    slug: post.id,
     title: post.data.title,
     description: post.data.description,
     date: post.data.date.toISOString(),

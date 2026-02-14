@@ -31,7 +31,7 @@ const posts = (await getCollection("posts")).sort(
           });
           return (
             <li class="post-item">
-              <a href={`/posts/${post.slug}`}>
+              <a href={`/posts/${post.id}`}>
                 <span class="post-title">{post.data.title}</span>
                 <span class="post-description">{post.data.description}</span>
                 <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
