@@ -4,16 +4,16 @@ import Heading from "../components/Heading.astro";
 import Prose from "../components/Prose.astro";
 ---
 
-<Layout title="About — UINUX Blog" description="About UINUX Blog.">
+<Layout title="About — Warm Websites" description="About Warm Websites.">
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About UINUX Blog",
-    "description": "About UINUX Blog.",
+    "name": "About Warm Websites",
+    "description": "About Warm Websites.",
     "url": new URL("/about", Astro.site).href,
     "isPartOf": {
       "@type": "WebSite",
-      "name": "UINUX Blog",
+      "name": "Warm Websites",
       "url": Astro.site?.href,
     },
   })} />

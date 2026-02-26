@@ -8,17 +8,17 @@ const posts = (await getCollection("posts")).sort(
 );
 ---
 
-<Layout title="UINUX Blog">
+<Layout title="Warm Websites">
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "UINUX Blog",
+    "name": "Warm Websites",
     "description": "Writing about systems, design, and building with restraint.",
     "url": Astro.site?.href,
   })} />
   <section class="home">
     <header class="home-header">
-      <Heading as="h1">UINUX Blog</Heading>
+      <Heading as="h1">Warm Websites</Heading>
       <p class="home-tagline">Writing about systems, design, and building with restraint.</p>
     </header>
     <ul class="post-list">
