@@ -15,8 +15,6 @@ date: 2026-01-02
   </iframe>
 </div>
 
-# Free Cover Letter Checker That Actually Helps You Get Interviews
-
 Let’s be honest about cover letters.
 
 Most people write them like they are trying to sound “professional,” which usually means they stop sounding like themselves. The result is a letter that could be sent to 300 companies without changing a word. Hiring teams can smell that instantly.
