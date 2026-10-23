@@ -5,9 +5,5 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://warmwebsites.com",
   integrations: [mdx(), sitemap()],
-  markdown: {
-    shikiConfig: {
-      theme: "github-light",
-    },
-  },
+
 });

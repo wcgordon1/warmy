@@ -25,12 +25,12 @@ Anyone who needs a visual builder, dynamic content, user accounts, or comments. 
 
 ### Prerequisites
 
-- Node.js 18 or later
+- Node.js 24.22.1 (see `.nvmrc`)
 
 ### Install
 
 ```
-npm install
+npm ci
 ```
 
 ### Start writing
@@ -160,3 +160,7 @@ No tags. No categories. No authors. Write and publish.
 ## License
 
 MIT
+
+## Editorial guides
+
+New guides can add optional `author`, `cover`, `updatedDate`, `faq`, `editorial`, and `ctaEnd` frontmatter. The post template renders matching visible and structured FAQs and places the final CTA after them. Existing posts retain their original content. Use `python3 scripts/verify-editorial-batch.py` after building, or pass a preview origin to check served output. See [the release notes](docs/editorial-release-2026-10-23.md) for source/deployment identity and verification limits.

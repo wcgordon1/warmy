@@ -22,12 +22,14 @@ const jsonLd = {
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": post.data.date.toISOString(),
+  "dateModified": (post.data.updatedDate ?? post.data.date).toISOString(),
+  ...(post.data.cover && { image: new URL(post.data.cover.image, Astro.site).href }),
   "url": postUrl,
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": postUrl,
   },
-  "author": {
+  "author": post.data.author ? { "@type": "Person", "name": post.data.author.name, "url": post.data.author.url } : {
     "@type": "Organization",
     "name": "Warm Websites",
     "url": "https://warmwebsites.com",
@@ -38,11 +40,16 @@ const jsonLd = {
     "url": "https://warmwebsites.com",
   },
 };
+const faqJsonLd = post.data.faq && { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: post.data.faq.map(item=>({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
+const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 ---
 
-<Layout title={`${post.data.title} — Warm Websites`} description={post.data.description} ogType="article">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <Article title={post.data.title} date={post.data.date} description={post.data.description}>
+<Layout title={`${post.data.title}${post.data.editorial ? " | " : " — "}Warm Websites`} description={post.data.description} ogType="article" ogImage={post.data.cover && new URL(post.data.cover.image, Astro.site).href}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={safeJson(jsonLd)} />
+    {faqJsonLd && <script type="application/ld+json" set:html={safeJson(faqJsonLd)} />}
+  </Fragment>
+  <Article {...post.data}>
     <Content />
   </Article>
 </Layout>

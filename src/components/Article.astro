@@ -6,26 +6,38 @@ interface Props {
   title: string;
   date: Date;
   description: string;
+  updatedDate?: Date;
+  author?: { name: string; url: string; image: string };
+  cover?: { image: string; alt: string };
+  faq?: { question: string; answer: string }[];
+  ctaEnd?: { heading: string; text: string; links: { label: string; url: string }[] };
 }
 
-const { title, date, description } = Astro.props;
+const { title, date, updatedDate, author, cover, faq, ctaEnd } = Astro.props;
 
 const formattedDate = date.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
+  timeZone: "UTC",
 });
 ---
 
 <article class="article">
   <header class="article-header">
     <Heading as="h1">{title}</Heading>
+    {author && <p class="article-author"><img src={author.image} alt={author.name} width="48" height="48" /><span>By <a href={author.url} rel="author">{author.name}</a></span></p>}
     <p class="article-meta">
+      {"Published "}
       <time datetime={date.toISOString()}>{formattedDate}</time>
+      {updatedDate && <><br />Updated <time datetime={updatedDate.toISOString()}>{updatedDate.toLocaleDateString("en-US", {year:"numeric",month:"long",day:"numeric",timeZone:"UTC"})}</time></>}
     </p>
+    {cover && <img class="article-cover" src={cover.image} alt={cover.alt} width="1200" height="675" fetchpriority="high" />}
   </header>
   <Prose>
     <slot />
+    {faq && <section class="article-faq" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>{faq.map(item=><section><h3>{item.question}</h3><p>{item.answer}</p></section>)}</section>}
+    {ctaEnd && <section id="cta-end" class="guide-cta"><h2>{ctaEnd.heading}</h2><p>{ctaEnd.text}</p><p class="cta-links">{ctaEnd.links.map(link=><a href={link.url} rel="sponsored">{link.label}</a>)}</p></section>}
   </Prose>
 </article>
 
@@ -38,10 +50,14 @@ const formattedDate = date.toLocaleDateString("en-US", {
     margin-bottom: var(--space-xl);
   }
 
+  .article-author { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg); font: 0.875rem var(--font-heading); }
+  .article-author img { border-radius: 50%; object-fit: cover; }
+  .article-cover { width: 100%; height: auto; margin-top: var(--space-lg); border: 1px solid var(--color-border); border-radius: 8px; }
+
   .article-meta {
     font-family: var(--font-heading);
     font-size: 0.8125rem;
-    color: var(--color-text-tertiary);
+    color: var(--color-text-secondary);
     margin-top: var(--space-sm);
   }
 </style>
