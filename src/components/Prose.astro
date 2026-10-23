@@ -101,4 +101,18 @@
   .prose :global(strong) {
     font-weight: 600;
   }
+
+  .prose { overflow-wrap: anywhere; }
+  .prose :global(.guide-table) { max-width: 100%; overflow-x: auto; margin: 2rem 0; border: 1px solid var(--color-border); border-radius: 6px; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; font-family: var(--font-heading); font-size: 0.8rem; min-width: 540px; }
+  .prose :global(caption) { padding: 1rem; text-align: left; font-weight: 600; }
+  .prose :global(th), .prose :global(td) { padding: 0.8rem; border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: top; }
+  .prose :global(th) { background: var(--color-code-bg); }
+  .prose :global(.guide-cta) { border: 1px solid var(--color-border); border-radius: 8px; padding: 1.2rem; background: var(--color-surface); margin: 2rem 0; }
+  .prose :global(.guide-cta p:last-child) { margin-bottom: 0; }
+  .prose :global(.guide-cta a) { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+  .prose :global(.cta-links) { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+  .prose :global(.guide-cta h2) { margin-top: 0; }
+  .prose :global(.disclosure) { font-family: var(--font-heading); color: var(--color-text-secondary); font-size: 0.8rem; }
+  .prose :global(:focus-visible) { outline: 2px solid var(--color-text); outline-offset: 4px; }
 </style>
