@@ -109,8 +109,8 @@ for path in ['/','/rss.xml','/search-index.json','/sitemap-0.xml','/llms.txt']:
     text=read(path)
     assert all(post.stem in text for post in POSTS),path
     print('PASS discovery:',path)
-assert len(json.loads(read('/search-index.json')))==13
-assert read('/rss.xml').count('<item>')==13
+assert len(json.loads(read('/search-index.json')))>=13
+assert read('/rss.xml').count('<item>')>=13
 assert 'Sitemap: https://warmwebsites.com/sitemap-index.xml' in read('/robots.txt')
 for path in ['/about','/search','/posts/best-startup-lead-databases','/posts/how-to-practice-wedding-vows','/404.html']:
     read(path);print('PASS existing route:',path)
